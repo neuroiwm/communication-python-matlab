@@ -26,13 +26,20 @@ classdef ReceiverUDP < handle
 
 
         function start(self)
-            self.receiver = udpport("IPV4",'LocalPort',self.config.num_port_receive,'Timeout',self.config.duration_timeout);
+            self.receiver = udpport("IPV4", ...
+                'LocalHost',"127.0.0.1", ...
+                'LocalPort',self.config.num_port_receive, ...
+                'Timeout',self.config.duration_timeout);
         end
 
         function read(self)
             data_recv = self.receiver.read(2,"string");
             if ~isempty(data_recv)
-                self.data_recv = str2num(data_recv);
+                if isstring(data_recv)
+                    self.data_recv = data_recv;
+                else
+                    self.data_recv = str2num(data_recv);
+                end
             end
         end
 

@@ -2,7 +2,7 @@ import socket
 from time import sleep
 
 IP_SELF = '127.0.0.1'
-PORT_SEND = 5200
+PORT_SEND = 5201
 KEEP_ALIVE = 1
 
 if __name__ == '__main__':
